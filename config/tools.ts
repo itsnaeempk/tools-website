@@ -1,0 +1,42 @@
+export const tools = [
+  {
+    id: 1,
+    name: "Metaboost CSV generator",
+    url: "https://metaboost.vercel.app/",
+    image: "/images/tools/metaboost.png",
+    btn: "Visit website",
+    label: "New",
+  },
+  {
+    id: 2,
+    name: "Metaboost",
+    url: "https://metaboost.vercel.app/",
+    image: "/images/tools/metaboost.png",
+    btn: "Visit website",
+    label: "New",
+  },
+  {
+    id: 3,
+    name: "Metaboost",
+    url: "https://metaboost.vercel.app/",
+    image: "/images/tools/metaboost.png",
+    btn: "Visit website",
+    label: "New",
+  },
+  {
+    id: 4,
+    name: "Metaboost",
+    url: "https://metaboost.vercel.app/",
+    image: "/images/tools/metaboost.png",
+    btn: "Visit website",
+    label: "New",
+  },
+  {
+    id: 5,
+    name: "Metaboost",
+    url: "https://metaboost.vercel.app/",
+    image: "/images/tools/metaboost.png",
+    btn: "Visit website",
+    label: "New",
+  },
+];

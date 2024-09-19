@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FCFEFF;
+  --foreground: #000000;
+  --muted: #F1F1F1;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #FCFEFF;
+  }
+} */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

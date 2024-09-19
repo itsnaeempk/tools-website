@@ -67,7 +67,7 @@ const Container = () => {
             <div className="flex justify-between gap-5 items-center w-full px-5 pb-5">
               <h3 className="text-xl">{tool.name}</h3>
               <Link
-                href={tool.url}
+                href={tool.url} target="_blank"
                 className="bg-black bg-gradient-to-r from-[#202639] to-[#3f4c77] text-white  text-sm px-5 py-4 rounded-lg whitespace-nowrap hover:opacity-80"
               >
                 {tool.btn}

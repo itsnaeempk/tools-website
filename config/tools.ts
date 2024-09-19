@@ -31,12 +31,5 @@ export const tools = [
     btn: "Visit website",
     label: "New",
   },
-  {
-    id: 5,
-    name: "Metaboost",
-    url: "https://metaboost.vercel.app/",
-    image: "/images/tools/metaboost.png",
-    btn: "Visit website",
-    label: "New",
-  },
+  
 ];

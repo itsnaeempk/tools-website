@@ -7,7 +7,7 @@ import React, { useState } from "react";
 
 const Container = () => {
   const [selectedTab, setSelectedTab] = useState<"tools" | "scripts">(
-    "scripts"
+    "tools"
   );
 
   return (
@@ -97,8 +97,8 @@ const Container = () => {
                 height={78}
                 className=" object-cover size-24"
               />
-              <div className="flex flex-col  gap-5  w-full">
-                <h3 className="text-xl">{script.name}</h3>
+              <div className="flex flex-col  gap-3  w-full">
+                <h3 className="text-lg">{script.name}</h3>
                 <Link
                   target="_blank"
                   href={script.url}

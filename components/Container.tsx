@@ -1,11 +1,14 @@
 "use client";
+import { scripts } from "@/config/scripts";
 import { tools } from "@/config/tools";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
 const Container = () => {
-  const [selectedTab, setSelectedTab] = useState<"tools" | "scripts">("tools");
+  const [selectedTab, setSelectedTab] = useState<"tools" | "scripts">(
+    "scripts"
+  );
 
   return (
     <section className="mt-12">
@@ -48,34 +51,66 @@ const Container = () => {
         </div>
       </label>
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-10 mt-16">
-        {tools.map((tool, index) => (
-          <div
-            key={tool.id}
-            className="flex flex-col items-center gap-5 rounded-[34px] overflow-hidden bg-[#EFEFEF]"
-            data-aos="fade-up"
-            data-aos-delay={index * 100}
-          >
-            <div className="bg-gray-400 w-full aspect-[2/1] relative">
+      {selectedTab === "tools" ? (
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-10 mt-16">
+          {tools.map((tool, index) => (
+            <div
+              key={tool.id}
+              className="flex flex-col items-center gap-5 rounded-[34px] overflow-hidden bg-[#EFEFEF]"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div className="bg-gray-400 w-full aspect-[2/1] relative">
+                <Image
+                  src={tool.image}
+                  alt={tool.name}
+                  fill
+                  className="w-12 h-12"
+                />
+              </div>
+              <div className="flex justify-between gap-5 items-center w-full px-5 pb-5">
+                <h3 className="text-xl">{tool.name}</h3>
+                <Link
+                  target="_blank"
+                  href={tool.url}
+                  className="bg-black bg-gradient-to-r from-[#202639] to-[#3f4c77] text-white  text-sm px-5 py-4 rounded-lg whitespace-nowrap hover:opacity-80"
+                >
+                  {tool.btn}
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-10 mt-16">
+          {scripts.map((script, index) => (
+            <div
+              key={script.id}
+              className="flex  items-center  rounded-[34px] overflow-hidden bg-[#EFEFEF] p-5 gap-5"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
               <Image
-                src={tool.image}
-                alt={tool.name}
-                fill
-                className="w-12 h-12"
+                src={"/images/python.png"}
+                alt={"script"}
+                width={78}
+                height={78}
+                className=" object-cover size-24"
               />
+              <div className="flex flex-col  gap-5  w-full">
+                <h3 className="text-xl">{script.name}</h3>
+                <Link
+                  target="_blank"
+                  href={script.url}
+                  className="bg-black bg-gradient-to-r from-[#202639] to-[#3f4c77] text-white  text-sm px-5 py-4 rounded-lg whitespace-nowrap hover:opacity-80 w-max"
+                >
+                  Download
+                </Link>
+              </div>
             </div>
-            <div className="flex justify-between gap-5 items-center w-full px-5 pb-5">
-              <h3 className="text-xl">{tool.name}</h3>
-              <Link
-                href={tool.url} target="_blank"
-                className="bg-black bg-gradient-to-r from-[#202639] to-[#3f4c77] text-white  text-sm px-5 py-4 rounded-lg whitespace-nowrap hover:opacity-80"
-              >
-                {tool.btn}
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 };

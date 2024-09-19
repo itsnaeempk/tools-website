@@ -42,7 +42,7 @@ export default function Home() {
           Our Curated <span className="text-[#26C7EA]">Tools & Scripts</span>
         </h1>
         <button
-          className="px-8 py-3.5 bg-[#252525] text-white rounded-full "
+          className="px-8 py-3.5 bg-[#252525] text-white rounded-full hover:!opacity-80"
           data-aos="fade-up"
           data-aos-delay="200"
         >

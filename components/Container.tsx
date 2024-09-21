@@ -3,12 +3,32 @@ import { scripts } from "@/config/scripts";
 import { tools } from "@/config/tools";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
 
 const Container = () => {
-  const [selectedTab, setSelectedTab] = useState<"tools" | "scripts">(
-    "tools"
-  );
+  const [selectedTab, setSelectedTab] = useState<"tools" | "scripts">("tools");
+  const [hasAccess, setHasAccess] = useState(false);
+  const { user, isLoaded } = useUser();
+
+  useEffect(() => {
+    const checkAccess = async () => {
+      if (isLoaded && user) {
+        setHasAccess((user.publicMetadata.allow as boolean) || false);
+      }
+    };
+
+    checkAccess();
+  }, [isLoaded, user]);
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!hasAccess) {
+      e.preventDefault();
+      alert(
+        "You don't have access to this resource. Please contact the administrator."
+      );
+    }
+  };
 
   return (
     <section className="mt-12">
@@ -73,7 +93,12 @@ const Container = () => {
                 <Link
                   target="_blank"
                   href={tool.url}
-                  className="bg-black bg-gradient-to-r from-[#202639] to-[#3f4c77] text-white  text-sm px-5 py-4 rounded-lg whitespace-nowrap hover:opacity-80"
+                  className={`bg-black bg-gradient-to-r from-[#202639] to-[#3f4c77] text-white text-sm px-5 py-4 rounded-lg whitespace-nowrap ${
+                    hasAccess
+                      ? "hover:opacity-80"
+                      : "opacity-50 cursor-not-allowed"
+                  }`}
+                  onClick={handleLinkClick}
                 >
                   {tool.btn}
                 </Link>
@@ -102,7 +127,12 @@ const Container = () => {
                 <Link
                   target="_blank"
                   href={script.url}
-                  className="bg-black bg-gradient-to-r from-[#202639] to-[#3f4c77] text-white  text-sm px-5 py-4 rounded-lg whitespace-nowrap hover:opacity-80 w-max"
+                  className={`bg-black bg-gradient-to-r from-[#202639] to-[#3f4c77] text-white text-sm px-5 py-4 rounded-lg whitespace-nowrap w-max ${
+                    hasAccess
+                      ? "hover:opacity-80"
+                      : "opacity-50 cursor-not-allowed"
+                  }`}
+                  onClick={handleLinkClick}
                 >
                   Download
                 </Link>

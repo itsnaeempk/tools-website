@@ -1,4 +1,10 @@
 import Container from "@/components/Container";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 export default function Home() {
   return (
@@ -41,13 +47,31 @@ export default function Home() {
           with <br />
           Our Curated <span className="text-[#26C7EA]">Tools & Scripts</span>
         </h1>
-        <button
-          className="px-8 py-3.5 bg-[#252525] text-white rounded-full hover:!opacity-80"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          Subscribe
-        </button>
+        <SignedOut>
+          <SignInButton>
+            <button
+              className="px-8 py-3.5 bg-[#252525] text-white rounded-full hover:!opacity-80"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              Subscribe
+            </button>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton
+            showName
+            appearance={{
+              elements: {
+                userButtonBox: "w-full",
+                userButtonTrigger:
+                  "w-full px-5 py-3.5 bg-[#252525] text-white rounded-full hover:!opacity-80 flex items-center justify-center gap-2",
+                userButtonAvatarBox: "w-6 h-6",
+                userButtonTextContainer: "text-base font-normal",
+              },
+            }}
+          />
+        </SignedIn>
       </div>
       <Container />
     </div>

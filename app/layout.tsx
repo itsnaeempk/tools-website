@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { AOSInit } from "@/components/aos";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -19,13 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${fontSans.variable}  antialiased font-sans bg-background text-foreground`}
-      >
-        <AOSInit />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${fontSans.variable}  antialiased font-sans bg-background text-foreground`}
+        >
+          <AOSInit />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
